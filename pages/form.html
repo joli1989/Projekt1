@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
+        <h3>{{ title }}</h3>
+
+        <form name="form" novalidate> 
+            <div class="form-group">
+                <label for="firstName">Ime</label>
+                <input type="text" class="form-control" name="firstName" ng-model="user.firstName" required />
+				<span ng-show="form.firstName.$touched && form.firstName.$invalid">Ime je obavezno</span>
+            </div>
+			<div class="form-group">
+                <label for="lastName">Prezime</label>
+                <input type="text" class="form-control" name="lastName" ng-model="user.lastName" required />
+				<span ng-show="form.lastName.$touched && form.lastName.$invalid">Prezime je obavezno</span>
+            </div>
+			<div class="form-group">
+                <label for="address">Adresa</label>
+                <input type="text" class="form-control" name="address" ng-model="user.address" required />
+				<span ng-show="form.address.$touched && form.address.$invalid">Adresa je obavezna</span>
+            </div>
+			<div class="form-group">
+                <label for="zip">Poštanski broj</label>
+                <input type="number" class="form-control" name="zip" ng-model="user.zip" required />
+				<span ng-show="form.zip.$touched && form.zip.$invalid">Poštanski broj je obavezan</span>
+            </div>
+			<div class="form-group">
+                <label for="city">Grad</label>
+                <input type="text" class="form-control" name="city" ng-model="user.city" required />
+				<span ng-show="form.city.$touched && form.city.$invalid">Grad je obavezan</span>
+            </div>
+			<div class="form-group">
+                <label for="state">Država</label>
+                     <input type="text" class="form-control" name="state" ng-model="user.state" required />
+				<span ng-show="form.state.$touched && form.state.$invalid">Država je obavezna</span>
+            </div>	
+			<div class="form-group">
+				<div ng-repeat="item in phones track by $index">
+					<label for="phone_{{$index}}">Telefon<span ng-if="$index > 0">{{$index + 1}}</span></label>
+					<div class="input-group">
+					  <input type="text" ng-pattern="/^\d+$/" class="form-control" name="phone_{{$index}}" ng-model="phones[$index]" required>
+					  <span class="input-group-btn">
+						<a class="btn btn-default" ng-click="remove($index)" ng-disabled="phones.length < 2">Ukloni telefon</a>
+					  </span>
+					</div>
+					<span ng-show="form.phone_{{$index}}.$touched && form.phone_{{$index}}.$invalid">Telefon je obavezan. Brojevi su dozovljeni</span>
+				</div>
+				<a class="btn btn-link" ng-click="add()">Dodaj telefon</a>
+			</div>
+			<div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="email" class="form-control" name="email" ng-model="user.email" required />
+				<span ng-show="form.email.$touched && form.email.$invalid">E-Mail je obavezan, u ispravnom formatu</span>
+            </div>
+			<button ng-click="submit()" ng-disabled="form.$invalid" class="btn btn-primary">{{ buttonTitle }}</button>
+			<a href="#/user/{{user.id}}" class="btn btn-default pull-right" ng-if="isEdit">Odustani</a>
+        </form>
+		
+    </div>
+</div>

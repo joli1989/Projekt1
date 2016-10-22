@@ -1,0 +1,52 @@
+<div class="row">
+	<div class="col-sm-12 col-md-10 col-md-offset-1">
+	
+		<h3>Pretraga</h3>
+		<div class="row">
+			<form class="form-inline text-center col-sm-8 col-sm-offset-2">
+			  <div class="form-group col-xs-6">
+				<label>Ime:</label>
+				<input class="form-control" ng-model="search.firstName">
+			  </div>
+			  <div class="form-group col-xs-6"">
+				<label>Prezime:</label>
+				<input class="form-control" ng-model="search.lastName">
+			  </div>
+			  <div class="form-group col-xs-6"">
+				<label>Telefon:</label>
+				<input class="form-control" ng-model="search.phones">
+			  </div>
+			  <div class="form-group col-xs-6"">
+				<label>Email:</label>
+				<input class="form-control" ng-model="search.email">
+			  </div>
+			</form>
+		</div>
+		
+		<h3>Imenik</h3>
+		<table class="table">
+			<tr>
+				<th>#</th>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Telefon</span></th>
+				<th>Email</th>
+				<th></th>
+			</tr>
+			<tr dir-paginate="user in users | orderBy:'id' | filter:search:strict | itemsPerPage:5">
+				<td>{{user.id}}</td>
+				<td>{{user.firstName}}</td>
+				<td>{{user.lastName}}</td>
+				<td><li ng-repeat="phone in user.phones track by $index">{{phone}}</li></td>
+				<td>{{user.email}}</td>
+				<td><a href="#user/{{user.id}}">Detalji</a></td>
+			</tr>
+		</table>
+		<dir-pagination-controls
+		   max-size="5"
+		   direction-links="true"
+		   boundary-links="true" >
+		</dir-pagination-controls>
+		
+	</div>
+</div>

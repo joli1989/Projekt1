@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+	<head>
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+	  <link rel="stylesheet" type="text/css" href="style.css">
+	  
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+	  <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+	  <script src="utils/dirPagination.js"></script>
+	  
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="script.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#/">Imenik App</a>
+			</div>
+			<div class="collapse navbar-collapse" id="nav">
+			  <ul class="nav navbar-nav navbar-right">
+				<li><a href="#/">Imenik</a></li>
+				<li><a href="#add">Unos</a></li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+		<div class="container">
+			<div ng-view></div>
+		</div>
+		<footer></footer>
+	</body>
+</html>

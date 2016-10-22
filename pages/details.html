@@ -1,0 +1,137 @@
+<div class="row">
+	<div class="col-sm-12 col-md-10 col-md-offset-1">
+		<h3>Detalji</h3>
+		<table class="table">
+		  <tbody>
+		  <tr>
+			  <th>ID</th>
+			  <td>{{ user.id }}</td>
+			</tr>
+			<tr>
+			  <th>Ime</th>
+			  <td>{{ user.firstName }}</td>
+			</tr>
+			<tr>
+			  <th>Prezime</th>
+			  <td>{{ user.lastName }}</td>
+			</tr>
+			<tr>
+			  <th>Adresa</th>
+			  <td>{{ user.address }}</td>
+			</tr>
+			<tr>
+			  <th>Poštanski broj</th>
+			  <td>{{ user.zip }}</td>
+			</tr>
+			<tr>
+			  <th>Grad</th>
+			  <td>{{ user.city }}</td>
+			</tr>
+			<tr>
+			  <th>Država</th>
+			  <td>{{ user.state }}</td>
+			</tr>
+			<tr>
+			  <th>Telefon<span ng-if="user.phones.length > 1">i</span></th>
+			  <td><li ng-repeat="phone in user.phones track by $index">{{ phone }}</li></td>
+			</tr>
+			<tr>
+			  <th>Email</th>
+			  <td>{{ user.email }}</td>
+			</tr>
+		  </tbody>
+		</table>
+		<button type="button" ng-click="del()" class="btn btn-primary">Izbriši</button>
+		<button type="button" ng-click="edit()" class="btn btn-primary">Uredi</button>
+		<a href="#/" class="btn btn-default pull-right">Home</a>
+	</div>
+</div>
+
+<div class="row" style="margin-top: 18px;" ng-if="siblings.length > 1">
+	<div class="col-sm-12 col-md-10 col-md-offset-1">
+		<div class="alert alert-success" role="alert">
+		  <strong>{{ siblings.length - 1 }}</strong> korisnika dostupno za merganje.
+		</div>
+	</div>	
+</div>
+
+<div class="row" ng-if="siblings.length > 1">
+	<div class="col-sm-12 col-md-10 col-md-offset-1">
+		<h3>Merge</h3>
+		<form name="form">
+			<table class="table">
+			  <tbody>
+				<tr>
+				  <th>Ime</th>
+				  <td ng-model="merged.firstName" ng-bind="user.firstName">{{ user.firstName }}</td>
+				</tr>
+				<tr>
+				  <th>Prezime</th>
+				  <td ng-model="merged.lastName">{{ user.lastName }}</td>
+				</tr>
+				<tr>
+				  <th>Adresa</th>
+				  <td>
+					<li ng-repeat="item in siblings"> 
+						<div class="radio">
+						  <label><input type="radio" name="address" value="{{ item.address }}" ng-model="merged.address">{{ item.address }}</label>
+						</div>
+					</li>
+				  </td>
+				</tr>
+				<tr>
+				  <th>Poštanski broj</th>
+				  <td>
+					<li ng-repeat="item in siblings"> 
+						<div class="radio" ng-if="item.zip != siblings[$index + 1].zip">
+						  <label><input type="radio" name="zip" value="{{ item.zip }}" ng-model="merged.zip">{{ item.zip }}</label>
+						</div>
+					</li>
+				  </td>
+				</tr>
+				<tr>
+				  <th>Grad</th>
+				  <td>
+					<li ng-repeat="item in siblings"> 
+						<div class="radio" ng-if="item.city != siblings[$index + 1].city">
+						  <label><input type="radio" name="city" value="{{ item.city }}" ng-model="merged.city">{{ item.city }}</label>
+						</div>
+					</li>
+				  </td>
+				</tr>
+				<tr>
+				  <th>Država</th>
+				  <td>
+					<li ng-repeat="item in siblings"> 
+						<div class="radio" ng-if="item.state != siblings[$index + 1].state">
+						  <label><input type="radio" name="state" value="{{ item.state }}" ng-model="merged.state">{{ item.state }}</label>
+						</div>
+					</li>
+				  </td>
+				</tr>
+				<tr>
+				  <th>Telefon</th>
+				  <td>
+					<li ng-repeat="phone in allPhones track by $index"> 
+						<div class="checkbox" ng-if="phone != allPhones[$index + 1].phone">
+							<label><input type="checkbox" name="phone" value="{{ phone }}" ng-model="allPhones[$index].checked">{{ phone.number }}</label>
+						</div>
+					</li>
+				  </td>
+				</tr>
+				<tr>
+				  <th>Email</th>
+				  <td>
+					<li ng-repeat="item in siblings"> 
+						<div class="radio" ng-if="item.email != siblings[$index + 1].email">
+						  <label><input type="radio" name="email" value="{{ item.email }}" ng-model="merged.email">{{ item.email }}</label>
+						</div>
+					</li>
+				  </td>
+				</tr>
+			  </tbody>
+			</table>			
+			<button ng-click="merge();" ng-disabled="btnDisabled" class="btn btn-primary">Merge</button>
+		</form>
+	</div>
+</div>

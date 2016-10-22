@@ -1,0 +1,15 @@
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.form-group span {
+    color: #FA787E;
+}
+label span {
+    color: black !important;
+}
+form input.ng-invalid.ng-touched {
+    border-color: #FA787E;
+}
+li{
+	list-style: none;
+}
